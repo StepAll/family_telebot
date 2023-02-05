@@ -9,6 +9,8 @@ RUN pip install google-auth-httplib2
 RUN pip install Pillow
 RUN pip install pytelegrambotapi
 
+RUN pip install dotenv
+
 COPY family-telebot-key.json .
 COPY family_telebot2.py .
 
