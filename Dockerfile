@@ -9,7 +9,7 @@ RUN pip install google-auth-httplib2
 RUN pip install Pillow
 RUN pip install pytelegrambotapi
 
-RUN pip install dotenv
+RUN pip install python-dotenv
 
 COPY family-telebot-key.json .
 COPY family_telebot2.py .
@@ -23,7 +23,7 @@ CMD ["python", "family_telebot.py"]
 # ----- push to docker hub
 # cd family_telebot
 # docker login --username=stepall
-# pass s361761on
+# pass *******
 # docker build . -t stepall/family_telebot:latest
 # `
 
