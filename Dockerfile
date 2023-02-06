@@ -1,24 +1,13 @@
 FROM python:3.10-slim-bullseye
 
-WORKDIR /family_telebot
+RUN pip install google-api-python-client oauth2client google-auth-httplib2 Pillow pytelegrambotapi
 
-RUN pip install google-api-python-client
-RUN pip install oauth2client
-RUN pip install google-auth-httplib2
-
-RUN pip install Pillow
-RUN pip install pytelegrambotapi
-
-RUN pip install python-dotenv
-
-COPY family-telebot-key.json .
-COPY family_telebot2.py .
+COPY julia_phrases_telebot.py .
 
 RUN apt-get update -y
 RUN apt-get install -y fonts-dejavu-core
 
-
-CMD ["python", "family_telebot.py"]
+CMD ["python", "julia_phrases_telebot.py"]
 
 # ----- push to docker hub
 # cd family_telebot
@@ -30,3 +19,6 @@ CMD ["python", "family_telebot.py"]
 
 # ---- start from docker hub
 # docker run stepall/family_telebot
+
+# deploy to Fly.io
+# https://dev.to/denvercoder1/hosting-a-python-discord-bot-for-free-with-flyio-3k19
