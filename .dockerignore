@@ -1,0 +1,7 @@
+# flyctl launch added from .gitignore
+**\__pycache__
+**\family-telebot-key.json
+**\img_show_dates.csv
+**\Dockerfile_old
+fly.toml
+julia_phrases_telebot.ipynb

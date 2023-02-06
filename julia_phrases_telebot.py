@@ -348,34 +348,8 @@ def get_img_id():
     return img_file_id
 
 def main():
-    PATH = ""
-    DATETIME_FORMAT = '%Y/%m/%d %H:%M'
-
-    SERVICE_ACCOUNT_JSON = os.environ.get('FAMILY_TELEBOT_GOOGLE_SERVICE_ACCOUNT_KEY_JSON', None)
-
-    # google spread sheet with phrases
-    SPREADSHEET_ID = os.environ.get('FAMILY_TELEBOT_JULIA_SPREADSHEET_ID', None)
-    PHRASES_PAGE_NAME = 'phrases'
-    PHRASES_SHOW_DATETIME_COLUMN = 'E'
-
-    PHOTOS_PAGE_NAME = 'photos'
-    PHOTOS_PAGE_ID = 1064383404
-    PHOTOS_PAGE_FIRST_COLUMN = "A"
-    PHOTOS_PAGE_LAST_COLUMN = "B"
-
-
-    RESERVED_HEADER_ROWS = 1
-
-    # google drive folder with photos 
-    JULIA_PHOTOS_FOLDER_ID = os.environ.get('FAMILY_TELEBOT_JULIA_PHOTOS_FOLDER_ID', None)
-
-    # teleboot
-    STEPANOVS_FAMILY_BOT_TOKEN = os.environ.get('STEPANOVS_FAMILY_BOT_TOKEN', None)
-    STEPANOVS_FAMILY_BOT_CHAT_ID = os.environ.get('STEPANOVS_FAMILY_BOT_CHAT_ID', None)
-    FAMILY_CHAT_ID = os.environ.get('FAMILY_CHAT_ID', None)
-
     telebot_token = STEPANOVS_FAMILY_BOT_TOKEN
-    telebot_chat_id = FAMILY_CHAT_ID
+    telebot_chat_id = STEPANOVS_FAMILY_BOT_CHAT_ID # FAMILY_CHAT_ID
     bot = telebot.TeleBot(telebot_token)
 
     min_time = 10 + 1 # no earlier than 10 Italia
@@ -393,6 +367,37 @@ def main():
             send_mem_to_telegram(bot, telebot_chat_id, mem)
         
         time.sleep(random.randint(8*60*60,12*60*60))
+
+
+
+
+PATH = ""
+DATETIME_FORMAT = '%Y/%m/%d %H:%M'
+
+SERVICE_ACCOUNT_JSON = os.environ.get('FAMILY_TELEBOT_GOOGLE_SERVICE_ACCOUNT_KEY_JSON', None)
+
+# google spread sheet with phrases
+SPREADSHEET_ID = os.environ.get('FAMILY_TELEBOT_JULIA_SPREADSHEET_ID', None)
+PHRASES_PAGE_NAME = 'phrases'
+PHRASES_SHOW_DATETIME_COLUMN = 'E'
+
+PHOTOS_PAGE_NAME = 'photos'
+PHOTOS_PAGE_ID = 1064383404
+PHOTOS_PAGE_FIRST_COLUMN = "A"
+PHOTOS_PAGE_LAST_COLUMN = "B"
+
+
+RESERVED_HEADER_ROWS = 1
+
+# google drive folder with photos 
+JULIA_PHOTOS_FOLDER_ID = os.environ.get('FAMILY_TELEBOT_JULIA_PHOTOS_FOLDER_ID', None)
+
+# teleboot
+STEPANOVS_FAMILY_BOT_TOKEN = os.environ.get('STEPANOVS_FAMILY_BOT_TOKEN', None)
+STEPANOVS_FAMILY_BOT_CHAT_ID = os.environ.get('STEPANOVS_FAMILY_BOT_CHAT_ID', None)
+FAMILY_CHAT_ID = os.environ.get('FAMILY_CHAT_ID', None)
+
+
 
 # prod
 if __name__ == '__main__':

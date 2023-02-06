@@ -16,7 +16,6 @@ CMD ["python", "julia_phrases_telebot.py"]
 # docker build . -t stepall/family_telebot:latest
 # `
 
-
 # ---- start from docker hub
 # docker run stepall/family_telebot
 
