@@ -349,7 +349,7 @@ def get_img_id():
 
 def main():
     telebot_token = STEPANOVS_FAMILY_BOT_TOKEN
-    telebot_chat_id = STEPANOVS_FAMILY_BOT_CHAT_ID # FAMILY_CHAT_ID
+    telebot_chat_id = FAMILY_CHAT_ID
     bot = telebot.TeleBot(telebot_token)
 
     min_time = 10 + 1 # no earlier than 10 Italia
@@ -361,10 +361,11 @@ def main():
         cur_hour = datetime.datetime.now().hour
         if cur_hour >= min_time and cur_hour <= max_time:
             phrases = get_phrases(only_new=True)
-            txt, txt_meaning = get_phrase(phrases)
-            img_bin = get_img()
-            mem = get_mem(img_bin, txt, txt_meaning)
-            send_mem_to_telegram(bot, telebot_chat_id, mem)
+            if phrases:
+                txt, txt_meaning = get_phrase(phrases)
+                img_bin = get_img()
+                mem = get_mem(img_bin, txt, txt_meaning)
+                send_mem_to_telegram(bot, telebot_chat_id, mem)
         
         time.sleep(random.randint(8*60*60,12*60*60))
 
@@ -374,10 +375,10 @@ def main():
 PATH = ""
 DATETIME_FORMAT = '%Y/%m/%d %H:%M'
 
-SERVICE_ACCOUNT_JSON = os.environ.get('FAMILY_TELEBOT_GOOGLE_SERVICE_ACCOUNT_KEY_JSON', None)
+SERVICE_ACCOUNT_JSON = os.environ.get('JULIA_MEM_GOOGLE_SERVICE_ACCOUNT_KEY_JSON', None)
 
 # google spread sheet with phrases
-SPREADSHEET_ID = os.environ.get('FAMILY_TELEBOT_JULIA_SPREADSHEET_ID', None)
+SPREADSHEET_ID = os.environ.get('JULIA_MEM_SPREADSHEET_ID', None)
 PHRASES_PAGE_NAME = 'phrases'
 PHRASES_SHOW_DATETIME_COLUMN = 'E'
 
@@ -390,7 +391,7 @@ PHOTOS_PAGE_LAST_COLUMN = "B"
 RESERVED_HEADER_ROWS = 1
 
 # google drive folder with photos 
-JULIA_PHOTOS_FOLDER_ID = os.environ.get('FAMILY_TELEBOT_JULIA_PHOTOS_FOLDER_ID', None)
+JULIA_PHOTOS_FOLDER_ID = os.environ.get('JULIA_MEM_PHOTOS_FOLDER_ID', None)
 
 # teleboot
 STEPANOVS_FAMILY_BOT_TOKEN = os.environ.get('STEPANOVS_FAMILY_BOT_TOKEN', None)

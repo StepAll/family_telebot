@@ -2,10 +2,11 @@ FROM python:3.10-slim-bullseye
 
 RUN pip install google-api-python-client oauth2client google-auth-httplib2 Pillow pytelegrambotapi
 
-COPY julia_phrases_telebot.py .
 
 RUN apt-get update -y
 RUN apt-get install -y fonts-dejavu-core
+
+COPY julia_phrases_telebot.py .
 
 CMD ["python", "julia_phrases_telebot.py"]
 

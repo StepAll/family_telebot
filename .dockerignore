@@ -5,3 +5,6 @@
 **\Dockerfile_old
 fly.toml
 julia_phrases_telebot.ipynb
+julia_phrases_api.ipynb
+julia_phrases_api.py
+.env
