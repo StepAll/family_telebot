@@ -357,24 +357,31 @@ def main():
     telebot_chat_id = FAMILY_CHAT_ID
     bot = telebot.TeleBot(telebot_token)
 
-    min_time = 10 + 1 # no earlier than 10 Italia
+    min_time = 10 - 3 # no earlier than 10 MSK
     max_time = 22 - 4 # no later than 22 Saratov
 
+    log_msg = f"Генератор мемов с фразами от Юли *запущен*"
+    bot.send_message(STEPANOVS_FAMILY_BOT_CHAT_ID, 
+                    log_msg, 
+                    parse_mode='Markdown', 
+                    disable_web_page_preview=True)
+
     # main code
+    first_run = True
     while True:
 
-        cur_hour = datetime.datetime.now().hour
-        if cur_hour >= min_time and cur_hour <= max_time:
-            phrases = get_phrases(only_new=True)
-            if phrases:
-                txt, txt_meaning = get_phrase(phrases)
-                img_bin = get_img()
-                mem = get_mem(img_bin, txt, txt_meaning)
-                send_mem_to_telegram(bot, telebot_chat_id, mem)
+        if not first_run:
+            cur_hour = datetime.datetime.now().hour
+            if cur_hour >= min_time and cur_hour <= max_time:
+                phrases = get_phrases(only_new=True)
+                if phrases:
+                    txt, txt_meaning = get_phrase(phrases)
+                    img_bin = get_img()
+                    mem = get_mem(img_bin, txt, txt_meaning)
+                    send_mem_to_telegram(bot, telebot_chat_id, mem)
         
+        first_run = False
         time.sleep(random.randint(8*60*60,12*60*60))
-
-
 
 
 PATH = ""

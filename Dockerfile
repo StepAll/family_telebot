@@ -9,7 +9,10 @@ RUN apt-get install -y fonts-dejavu-core
 COPY julia_phrases_telebot.py /app/
 COPY parse_kassir_vc_proton.py /app/
 
-CMD ["python", "/app/julia_phrases_telebot.py"]
+COPY start.sh .
+
+
+CMD ["bash", "start.sh"]
 
 
 
@@ -18,7 +21,6 @@ CMD ["python", "/app/julia_phrases_telebot.py"]
 # docker run --rm -i --env-file=.env --name family_telebot family_telebot
 
 # docker exec -it family_telebot bash
-# python /app/parse_kassir_vc_proton.py
 
 # ----- push to docker hub
 # cd family_telebot

@@ -53,7 +53,8 @@ def mark_sent_messages(messages:dict, sent_keys:list) -> dict:
 
 
 def send_msg_to_telegram(bot, telebot_chat_id, msg):
-    bot.send_message(telebot_chat_id, msg, parse_mode='Markdown', disable_web_page_preview=True)
+    bot.send_message(telebot_chat_id, msg, parse_mode='Markdown', 
+                    disable_web_page_preview=True)
     return None
 
 
@@ -72,6 +73,9 @@ bot = telebot.TeleBot(STEPANOVS_FAMILY_BOT_TOKEN)
 
 messages = {}
 
+log_msg = f"Информатор о появлении билетов на матч ВК Протон на https://saratov.kassir.ru *запущен*"
+send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
+
 while True:
     src = None
     response = None
@@ -79,11 +83,16 @@ while True:
     try:
         response = requests.get(url, headers=headers)
     except requests.exceptions.SSLError as e:
-        print(e)
+        log_msg = f"Информатор о билетах ВК Протон:\n{e}"
+        send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
+        
         
     if response:
         if response.status_code == 200: 
-            print( datetime.datetime.now(), 'response.status_code = 200')
+            
+            log_msg = f"response_status_code = 200"
+            send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
+
             src = response.text
 
             soup = BeautifulSoup(src, "html.parser")
