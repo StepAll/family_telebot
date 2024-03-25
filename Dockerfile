@@ -1,6 +1,6 @@
 FROM python:3.10-slim-bullseye
 
-RUN pip install google-api-python-client oauth2client google-auth-httplib2 Pillow pytelegrambotapi
+RUN pip install google-api-python-client oauth2client google-auth-httplib2 Pillow pytelegrambotapi telebot
 
 
 RUN apt-get update -y
