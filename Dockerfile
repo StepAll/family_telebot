@@ -7,6 +7,7 @@ RUN apt-get update -y
 RUN apt-get install -y fonts-dejavu-core
 
 COPY julia_phrases_telebot.py /app/
+COPY parse_kassir_vc_proton.py /app/
 
 CMD ["python", "/app/julia_phrases_telebot.py"]
 
