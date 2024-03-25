@@ -5,6 +5,7 @@ import time, datetime
 from bs4 import BeautifulSoup
 import telebot
 
+
 def add_messages(messages:dict, soup) -> dict:
     all_links = soup.find_all('a')
     for link in all_links:
@@ -79,17 +80,16 @@ send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
 while True:
     src = None
     response = None
-    
+
     try:
         response = requests.get(url, headers=headers)
     except requests.exceptions.SSLError as e:
         log_msg = f"Информатор о билетах ВК Протон:\n{e}"
-        send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
-        
+        send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)  
         
     if response:
         if response.status_code == 200: 
-            
+
             log_msg = f"response_status_code = 200"
             send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)
 
