@@ -83,6 +83,7 @@ while True:
         
     if response:
         if response.status_code == 200: 
+            print( datetime.datetime.now(), 'response.status_code = 200')
             src = response.text
 
             soup = BeautifulSoup(src, "html.parser")
@@ -90,9 +91,10 @@ while True:
             keys2send = get_keys_to_send(messages)
             msg2send = [messages[k]['text'] for k in keys2send]
             
-            msg = '\n'.join(msg2send)
-            msg = f"__В продаже:__\n{msg}"
-            send_msg_to_telegram(bot, FAMILY_CHAT_ID, msg)
+            if msg2send:
+                msg = '\n'.join(msg2send)
+                msg = f"__В продаже:__\n{msg}"
+                send_msg_to_telegram(bot, FAMILY_CHAT_ID, msg)
 
             messages = mark_sent_messages(messages, keys2send)
 
