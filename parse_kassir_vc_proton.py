@@ -84,7 +84,7 @@ while True:
     try:
         response = requests.get(url, headers=headers)
     except requests.exceptions.SSLError as e:
-        log_msg = f"Информатор о билетах ВК Протон:\n\`\`\`{e}\`\`\`"
+        log_msg = fr"Информатор о билетах ВК Протон:```{e}```"
         send_msg_to_telegram(bot, STEPANOVS_FAMILY_BOT_CHAT_ID, log_msg)  
         
     if response:
