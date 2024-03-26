@@ -63,9 +63,11 @@ def send_msg_to_telegram(bot, telebot_chat_id, msg):
         except requests.exceptions.ConnectionError as e:
             time.sleep(delay)
         else:
-            break
+            return None
+    
+    raise requests.exceptions.ConnectionError
 
-    return None
+    
 
 
 DELAY_TIME = int(os.environ['DELAY_TIME'])
