@@ -360,7 +360,7 @@ def main():
     min_time = 10 - 3 # no earlier than 10 MSK
     max_time = 22 - 4 # no later than 22 Saratov
 
-    log_msg = f"Генератор мемов с фразами от Юли *запущен*"
+    log_msg = f"Генератор мемов с фразами от Юляши *запущен*"
     bot.send_message(STEPANOVS_FAMILY_BOT_CHAT_ID, 
                     log_msg, 
                     parse_mode='Markdown', 
