@@ -54,8 +54,17 @@ def mark_sent_messages(messages:dict, sent_keys:list) -> dict:
 
 
 def send_msg_to_telegram(bot, telebot_chat_id, msg):
-    bot.send_message(telebot_chat_id, msg, parse_mode='Markdown', 
+    try_num = 2
+    delay = 5
+    for t in range(try_num):
+        try:
+            bot.send_message(telebot_chat_id, msg, parse_mode='Markdown', 
                     disable_web_page_preview=True)
+        except requests.exceptions.ConnectionError as e:
+            time.sleep(delay)
+        else:
+            break
+
     return None
 
 
