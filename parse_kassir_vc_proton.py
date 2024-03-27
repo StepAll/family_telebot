@@ -14,7 +14,11 @@ def add_messages(messages:dict, soup) -> dict:
             
             tikets_link = link.attrs["href"]
             if not messages.get(tikets_link):
-                event_date = datetime.datetime.strptime(tikets_link[-10:], '%Y-%m-%d').date()
+                try:
+                    event_date = datetime.datetime.strptime(tikets_link[-10:], '%Y-%m-%d').date()
+                except ValueError:
+                    event_date = (datetime.datetime.now() + datetime.timedelta(days=10)).date()
+                
                 txt = f'[{ss[0]} :: {ss[1]}, {ss[2]}]({KASSIR_URL}{tikets_link})'
                 messages[tikets_link] = {'text':txt, 
                                     'event_date':event_date,
